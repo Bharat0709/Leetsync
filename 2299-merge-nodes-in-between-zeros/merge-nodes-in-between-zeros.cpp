@@ -11,27 +11,20 @@
 class Solution {
 public:
     ListNode* mergeNodes(ListNode* head) {
-        ios::sync_with_stdio(false);
-        cin.tie(0);
-        cout.tie(0);
-        ListNode* it=head->next->next;
-        ListNode* temp=head->next;
-        ListNode* prev=NULL;
-        while(it)
-        {
-            if(it->val==0)
-            {
-                temp->next=it;
-                prev=temp;
-                temp=temp->next;
+        ListNode* curr = head ;
+        ListNode* Next = head -> next;
+        head = Next;
+        while(Next!=NULL){
+            int sum = 0 ;
+            while(Next -> val !=0){
+                sum = sum + Next->val ;
+                Next = Next -> next; 
             }
-            else
-            {
-                temp->val+=it->val;
-            }
-            it=it->next;
+            curr -> next  -> val = sum;
+            curr -> next -> next = Next -> next;
+            curr = Next;
+            Next = Next -> next;
         }
-        prev->next=NULL;
-        return head->next;
+    return head;
     }
 };
