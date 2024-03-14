@@ -21,16 +21,12 @@ public:
             Temp->next = NULL;
             return head;
         }
-
         ListNode* prev = head;
         ListNode* curr = head->next;
         ListNode* temp = head->next->next;
         ListNode* PrePrev = NULL;
         head = head->next;
-
         while (curr != NULL) {
-            cout << "CURR" << curr->val << endl;
-            cout << "PREV " << prev->val << endl;
             curr->next = prev;
             prev->next = temp;
             if (PrePrev != NULL) {
@@ -48,6 +44,6 @@ public:
                 temp = temp->next->next;
             }
         }
-        return head;
+    return head;
     }
 };
