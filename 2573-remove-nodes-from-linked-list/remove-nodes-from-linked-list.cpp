@@ -31,9 +31,9 @@ public:
         }
         stack<int> st;
         st.push(0);
-        ListNode* reversed = reverse(head);
-        ListNode* curr = reversed;
-        ListNode* temp = reversed->next;
+        head = reverse(head);
+        ListNode* curr = head;
+        ListNode* temp = head->next;
         while (temp != NULL) {
             if (curr->val >= temp->val && curr->val >= st.top() ||
                 (temp->val >= curr->val && curr->val >= st.top())) {
@@ -42,16 +42,15 @@ public:
             temp = temp->next;
             curr = curr->next;
         }
-        ListNode* InitialList = reverse(reversed);
-        ListNode* NewTemp = InitialList;
+        head = reverse(head);
+        ListNode* NewTemp = head;
         ListNode* Prev = NULL;
-
         while (NewTemp != NULL) {
             if (!st.empty() && NewTemp->val != st.top() && st.top() != 0) {
-                if (NewTemp == InitialList) {
-                    InitialList = NewTemp->next;
+                if (NewTemp == head) {
+                    head = NewTemp->next;
                     NewTemp->next = NULL;
-                    NewTemp = InitialList;
+                    NewTemp = head;
                 } else {
                     Prev->next = NewTemp->next;
                     NewTemp->next = NULL;
@@ -65,6 +64,6 @@ public:
                 NewTemp = NewTemp->next;
             }
         }
-        return InitialList;
+        return head;
     }
 };
