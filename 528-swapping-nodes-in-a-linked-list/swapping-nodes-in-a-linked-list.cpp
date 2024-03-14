@@ -11,6 +11,9 @@
 class Solution {
 public:
     ListNode* swapNodes(ListNode* head, int k) {
+        if(head == NULL || head -> next == NULL){
+            return head;
+        }
         int start = k;
         int count = 0;
 
