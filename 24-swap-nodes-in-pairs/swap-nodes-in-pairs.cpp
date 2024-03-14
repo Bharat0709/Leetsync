@@ -14,12 +14,6 @@ public:
         if (head == NULL || head->next == NULL) {
             return head;
         }
-        ListNode* Tempo = head;
-        int count = 0 ;
-        while( Tempo!=NULL){
-            count ++;
-            Tempo = Tempo -> next;
-        }
 
         if (head->next->next == NULL) {
             ListNode* Temp = head;
