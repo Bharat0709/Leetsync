@@ -11,28 +11,15 @@
 class Solution {
 public:
     ListNode* deleteMiddle(ListNode* head) {
-        if (head == NULL || head->next == NULL) {
-            return NULL;
+        ios_base::sync_with_stdio(false); cin.tie(nullptr);
+        if(!head || !head->next)    return nullptr;
+        ListNode *prev = nullptr, *slow = head, *fast = head;
+        while(fast && fast->next){
+            prev = slow;
+            slow = slow->next;
+            fast = fast->next->next;
         }
-
-        if (head->next->next == NULL) {
-            head->next = NULL;
-            return head;
-        }
-        ListNode* prev = NULL;
-        ListNode* slow = head;
-        ListNode* fast = head;
-
-        while (fast != NULL) {
-            fast = fast->next;
-            if (fast != NULL) {
-                fast = fast->next;
-                prev = slow;
-                slow = slow->next;
-            }
-        }
-        prev->next = slow->next;
-        slow->next = NULL;
+        prev->next = prev->next->next;
         return head;
     }
 };
