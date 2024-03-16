@@ -11,24 +11,24 @@
 class Solution {
 public:
     ListNode* oddEvenList(ListNode* head) {
-        if( head == NULL|| head -> next == NULL){
+        if (head == NULL || head->next == NULL) {
             return head;
         }
         ListNode* fast1 = head;
-        ListNode* fast2 = head -> next;
+        ListNode* fast2 = head->next;
         ListNode* temp = fast2;
-        while(fast2 !=NULL){
-            fast1 -> next = fast2 -> next;
-            if(fast2 -> next == NULL){
-                fast1 -> next = temp;
+        while (fast2 != NULL) {
+            fast1->next = fast2->next;
+            if (fast2->next == NULL) {
+                fast1->next = temp;
                 return head;
-            } else{
-            fast1 = fast2 -> next;
+            } else {
+                fast1 = fast2->next;
             }
-            fast2 -> next = fast1 -> next;
-            fast2 = fast1 -> next;
+            fast2->next = fast1->next;
+            fast2 = fast1->next;
         }
-        fast1 -> next = temp ;
+        fast1->next = temp;
         return head;
     }
 };
