@@ -2,16 +2,16 @@ class Solution {
 public:
     vector<int> nextLargerNodes(ListNode* head) {
         vector<int> result;
-        stack<pair<int, int>> st; // Pair of (index, value)
+        stack<pair<int, int>> st; 
         int index = 0;
         
         while (head != nullptr) {
-            result.push_back(0); // Initialize result for current node
+            result.push_back(0); 
             while (!st.empty() && st.top().second < head->val) {
-                result[st.top().first] = head->val; // Update result for indices where the value is smaller
+                result[st.top().first] = head->val; 
                 st.pop();
             }
-            st.push({index++, head->val}); // Push current value and its index
+            st.push({index++, head->val});
             head = head->next;
         }
         
