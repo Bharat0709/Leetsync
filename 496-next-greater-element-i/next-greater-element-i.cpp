@@ -1,30 +1,35 @@
 #include <vector>
 #include <unordered_map>
+#include <stack>
 using namespace std;
 
 class Solution {
 public:
     vector<int> nextGreaterElement(vector<int>& nums1, vector<int>& nums2) {
-        int size = nums1.size();
-        vector<int> result(size, -1); // Initialize result with -1
+        unordered_map<int, int> nextGreater; // Stores next greater element for each element in nums2
+        stack<int> s;
 
-        // Map each element of nums2 to its next greater element
-        unordered_map<int, int> nextGreater;
-        for (int i = 0; i < nums2.size(); i++) {
-            int next = -1;
-            for (int j = i + 1; j < nums2.size(); j++) {
-                if (nums2[j] > nums2[i]) {
-                    next = nums2[j];
-                    break;
-                }
+        // Iterate through nums2 to find next greater element for each element
+        for (int num : nums2) {
+            while (!s.empty() && s.top() < num) {
+                nextGreater[s.top()] = num;
+                s.pop();
             }
-            nextGreater[nums2[i]] = next;
+            s.push(num);
         }
 
-        // Fill result using the map
-        for (int i = 0; i < nums1.size(); i++) {
-            result[i] = nextGreater[nums1[i]];
+        // Elements left in stack have no next greater element
+        while (!s.empty()) {
+            nextGreater[s.top()] = -1;
+            s.pop();
         }
+
+        // Create result vector using nextGreater map
+        vector<int> result;
+        for (int num : nums1) {
+            result.push_back(nextGreater[num]);
+        }
+
         return result;
     }
 };
