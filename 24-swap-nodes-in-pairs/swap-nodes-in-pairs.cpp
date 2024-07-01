@@ -14,36 +14,29 @@ public:
         if (head == NULL || head->next == NULL) {
             return head;
         }
-        if (head->next->next == NULL) {
-            ListNode* Temp = head;
-            head->next->next = Temp;
-            head = head->next;
-            Temp->next = NULL;
-            return head;
-        }
-        ListNode* prev = head;
-        ListNode* curr = head->next;
-        ListNode* temp = head->next->next;
-        ListNode* PrePrev = NULL;
-        head = head->next;
-        while (curr != NULL) {
-            curr->next = prev;
-            prev->next = temp;
-            if (PrePrev != NULL) {
-                PrePrev->next = curr;
-                cout << "PP " << PrePrev->val;
+
+        ListNode* newHead = head->next; // New head will be the second node
+        ListNode* prev = NULL;
+        ListNode* curr = head;
+
+        while (curr != NULL && curr->next != NULL) {
+            ListNode* nextPair = curr->next->next; // The start of the next pair
+            ListNode* second = curr->next;
+
+            // Swap the pair
+            second->next = curr;
+            curr->next = nextPair;
+
+            // Connect previous pair with the current swapped pair
+            if (prev != NULL) {
+                prev->next = second;
             }
-            PrePrev = prev;
-            prev = temp;
-            if (temp == NULL) {
-                return head;
-            }else if( temp -> next == NULL){
-                return head;
-            }else{
-                curr = temp->next;
-                temp = temp->next->next;
-            }
+
+            // Move to the next pair
+            prev = curr;
+            curr = nextPair;
         }
-    return head;
+
+        return newHead;
     }
 };
