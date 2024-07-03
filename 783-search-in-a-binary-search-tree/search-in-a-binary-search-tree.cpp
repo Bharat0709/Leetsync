@@ -21,7 +21,6 @@ private:
         if (root->val == val) {
             result = root;
         }
-
         traverse(root->left, val, result);
         traverse(root->right, val, result);
     }
@@ -29,23 +28,17 @@ private:
 public:
     TreeNode* searchBST(TreeNode* root, int val) {
 
-        if (root == NULL) {
+        if (root == NULL)
             return root;
-        }
-        if(root -> val == val){
+
+        if (root->val == val)
             return root;
-        }
 
         TreeNode* result = NULL;
-        if (val > root->val) {
+        if (val > root->val)
             traverse(root->right, val, result);
-        } else {
+        if (val < root->val)
             traverse(root->left, val, result);
-        }
-
-        if (result) {
-            return result;
-        } else
-            return NULL;
+        return result;
     }
 };
