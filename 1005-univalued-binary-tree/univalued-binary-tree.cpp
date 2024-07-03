@@ -19,6 +19,7 @@ class Solution {
 
         if( root-> val != value){
             result = false;
+            return;
         }
         traverse(root -> left , result , value);
         traverse(root -> right , result , value);
@@ -30,7 +31,6 @@ public:
             return true;
         }
         bool result = true ;
-
         traverse(root , result, root -> val);
         return result;
     }
