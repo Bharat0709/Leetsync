@@ -13,30 +13,39 @@
 class Solution {
 
 private:
-    void traverse(TreeNode* root, int val , TreeNode* &result) {
+    void traverse(TreeNode* root, int val, TreeNode*& result) {
         if (root == NULL) {
             return;
         }
 
-        if(root -> val == val){
-            result = root ;
+        if (root->val == val) {
+            result = root;
         }
 
-        traverse(root -> left , val , result);
-        traverse(root -> right , val , result);
+        traverse(root->left, val, result);
+        traverse(root->right, val, result);
     }
 
 public:
     TreeNode* searchBST(TreeNode* root, int val) {
 
-        if(root == NULL){
+        if (root == NULL) {
             return root;
         }
-        TreeNode* result = NULL;
-        traverse(root , val , result);
+        if(root -> val == val){
+            return root;
+        }
 
-        if(result){
+        TreeNode* result = NULL;
+        if (val > root->val) {
+            traverse(root->right, val, result);
+        } else {
+            traverse(root->left, val, result);
+        }
+
+        if (result) {
             return result;
-        } else return NULL;
+        } else
+            return NULL;
     }
 };
