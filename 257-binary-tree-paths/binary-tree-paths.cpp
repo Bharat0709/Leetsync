@@ -6,31 +6,28 @@
  *     TreeNode *right;
  *     TreeNode() : val(0), left(nullptr), right(nullptr) {}
  *     TreeNode(int x) : val(x), left(nullptr), right(nullptr) {}
- *     TreeNode(int x, TreeNode *left, TreeNode *right) : val(x), left(left), right(right) {}
+ *     TreeNode(int x, TreeNode *left, TreeNode *right) : val(x), left(left),
+ * right(right) {}
  * };
  */
 class Solution {
 private:
-    void solve(TreeNode* root, vector<string>& result, string path) {
+    void solveLeft(TreeNode* root, vector<string>& result, string st) {
         if (root == NULL) {
             return;
         }
-        
-        // Add the current node's value to the path
-        if (!path.empty()) {
-            path += "->";
-        }
-        path += to_string(root->val);
 
-        // If it's a leaf node, add the path to the result
-        if (root->left == NULL && root->right == NULL) {
-            result.push_back(path);
+        st = st + "->" + to_string(root->val);
+
+        cout << st << endl;
+        if(root -> left == NULL && root -> right == NULL){
+            result.push_back(st);
+            return;
         }
-        
-        // Otherwise, continue the path with the left and right child
-        solve(root->left, result, path);
-        solve(root->right, result, path);
+        solveLeft(root->left, result, st);
+        solveLeft(root->right, result, st);
     }
+
 
 public:
     vector<string> binaryTreePaths(TreeNode* root) {
@@ -38,8 +35,20 @@ public:
         if (root == NULL) {
             return result;
         }
-        
-        solve(root, result, "");
+
+        if (root->left == NULL && root->right == NULL) {
+            result.push_back(to_string(root->val));
+        }
+
+        if(root -> left){
+        string st = to_string(root -> val);
+        solveLeft(root-> left, result, st);
+        }
+        if(root -> right){
+        string st = to_string(root -> val);
+        solveLeft(root -> right , result, st);
+        }
+
         return result;
     }
 };
