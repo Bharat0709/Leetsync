@@ -18,11 +18,12 @@ public:
         ListNode* newHead = head->next; // New head will be the second node
         ListNode* prev = NULL;
         ListNode* curr = head;
+        ListNode* nextPair = curr->next->next; // The start of the next pair
+        ListNode* second = curr->next;
 
         while (curr != NULL && curr->next != NULL) {
-            ListNode* nextPair = curr->next->next; // The start of the next pair
-            ListNode* second = curr->next;
-
+            nextPair = curr->next->next; // The start of the next pair
+            second = curr->next;
             // Swap the pair
             second->next = curr;
             curr->next = nextPair;
