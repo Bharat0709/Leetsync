@@ -21,20 +21,18 @@ private:
             root = NULL;
             return;
         }
-        cout << "Root Val " << root->val << " " << endl;
 
         Traverse(root->left, target);
         if (root->val == target && root->left == NULL && root->right == NULL) {
             root = NULL;
             return;
         }
-        cout << "Root" << root->val << " " << endl;
+
         Traverse(root->right, target);
                 if (root->val == target && root->left == NULL && root->right == NULL) {
             root = NULL;
             return;
         }
-        cout << "Root" << root->val << " " << endl;
     }
 
 public:
