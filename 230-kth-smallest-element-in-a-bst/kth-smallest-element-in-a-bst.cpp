@@ -20,10 +20,8 @@ private:
         k--;
         if (k == 0) {
             ans = root->val;
+            return;
         }
-        cout << "ROOT VAL " << root->val << "  "
-             << "K " << k << "  "
-             << "ANS " << ans << endl;
         kSmallest(root->right, k, ans);
     }
 
