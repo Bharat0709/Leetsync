@@ -16,14 +16,11 @@ private:
         if (root == NULL) {
             return;
         }
-        temp = to_string(root->val) + temp;
-        cout << "TEMP " << temp << endl;
+        temp = temp + to_string(root->val);
         if(root -> left == NULL && root -> right == NULL){
-            reverse(temp.begin(), temp.end());
             sum += stoi(temp);
         }
         solve(root->left, temp, sum);
-
         solve(root->right, temp, sum);
     }
 
