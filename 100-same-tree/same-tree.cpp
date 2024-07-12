@@ -39,6 +39,5 @@ public:
         bool r = true;
         traverse(p , q , r);
         return r ;
-        
     }
 };
